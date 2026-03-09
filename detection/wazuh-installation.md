@@ -75,5 +75,9 @@ https://192.168.20.40
 
 ![openWazuh](https://github.com/user-attachments/assets/cb3b734f-806e-4f51-bb00-020810582804)
 
+snapshot ubuntu OS: Ubuntu Server (LTS) --- Wazuh-AIO-Static-192.168.20.40-Functional
+_________________________________________________________________________________________________
+
+
 
 
