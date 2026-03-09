@@ -8,9 +8,9 @@ Tento dokument popisuje jednotlivé stroje, software a jejich role v mém domác
 
 ---
 
-## 1. Attacker – Kali Linux
+## 1. Attacker – Kali Linux :heavy_check_mark:
 
-- **OS:** Kali Linux 2025.1
+- **OS:** Kali Linux 2025.1 
 - **Role:** Útočník
 - **IP:** 192.168.20.30 (statická)
 - **Software / nástroje:**  
@@ -21,7 +21,7 @@ Tento dokument popisuje jednotlivé stroje, software a jejich role v mém domác
 
 "Tento stroj je výchozí bod pro všechny útoky v labu"
 
-## 2. Victim Workstation – Windows 11
+## 2. Victim Workstation – Windows 11 :heavy_check_mark:
 
 - **OS:** Windows 11 Pro  
 - **Role:** Cíl útoků / klient v doméně  
@@ -32,7 +32,7 @@ Tento dokument popisuje jednotlivé stroje, software a jejich role v mém domác
 
 
 
-## 3. Domain Controller – Windows Server 2022
+## 3. Domain Controller – Windows Server 2022 :heavy_check_mark:
 
 - **OS:** Windows Server 2022  
 - **Role:** Active Directory / DNS / DHCP  
@@ -60,7 +60,7 @@ Tento dokument popisuje jednotlivé stroje, software a jejich role v mém domác
 
 ---
 
-## 5. Síť
+## 5. Síť :heavy_check_mark:
 
 - **IP scheme:** 192.168.20.0/24  
 - **Gateway:** 192.168.20.1  
