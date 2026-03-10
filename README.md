@@ -91,16 +91,14 @@ Centrální sběr logů, monitoring bezpečnostních událostí a alerting.
 
 ---
 
-# 📁 Repository Structure
 
-```
-home-soc-lab
-│
-├─ lab-environment
-├─ detections
-├─ investigations
-└─ notes
-```
+## 📂 Project Sections
+
+- [Lab Architecture](architecture/lab-environment.md)
+- [Attack Simulations](attacks/)
+- [Detection Rules](detections/)
+- [Notes](notes/)
+
 
 ---
 
