@@ -62,9 +62,13 @@ Generování telemetrie a testování detekčních pravidel.
 
 Serverová infrastruktura a zdroj bezpečnostních logů.
 
+### 🖥️Ubuntu 22.04 LTS Server
+
+centrální bod pro sběr a vyhodnocování bezpečnostních událostí.
+
 ### 📊 Wazuh SIEM
 
-Centrální sběr logů, monitoring bezpečnostních událostí a alerting.
+Centrální bod pro sběr a vyhodnocování bezpečnostních událostí. Hostuje kompletní infrastrukturu SIEMu.
 
 ---
 
@@ -75,22 +79,9 @@ Centrální sběr logů, monitoring bezpečnostních událostí a alerting.
 * Windows
 * Wazuh SIEM
 * Sysmon
-* Nmap
 * Atomic Red Team
 
 ---
-
-# 🧪 What I Practice In This Lab
-
-* attack simulation
-* log analysis
-* detection engineering
-* SIEM monitoring
-* security event investigation
-* SOC workflows
-
----
-
 
 ## 📂 Project Sections
 
