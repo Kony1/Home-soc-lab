@@ -19,20 +19,31 @@ Virtuální prostředí obsahuje útočný stroj, pracovní stanici, serverovou 
 
 ```mermaid
 graph TD
+    subgraph "Útočná zóna"
+        K[Kali Linux<br/>192.168.20.30]
+    end
 
-    Kali["🥷 Kali Linux"] 
-    Win["💻 Windows Workstation"] 
-    Server["🖥️ Windows Server"] 
-    SIEM["📊 Wazuh SIEM"]
+    subgraph "Vnitřní síť (Skenovaný rozsah)"
+        W11[Windows 11 Target<br/>192.168.20.20]
+        DC[Domain Controller<br/>192.168.20.10]
+        GW[Gateway / Ostatní zařízení<br/>192.168.20.1]
+    end
 
-    Kali --- Network["Local Lab Network"]
-    Win --- Network
-    Server --- Network
-    SIEM --- Network
+    subgraph "SOC / Monitoring"
+        U[Ubuntu Wazuh SIEM<br/>192.168.20.40]
+    end
 
-    Win -->|Security Logs| SIEM
-    Server -->|Event Logs| SIEM
-    Kali -.->|Attack Simulation| Network
+    %% Útoky / Skenování na celý rozsah
+    K -- "Nmap Scan / Enumeration" --> W11
+    K -- "Nmap Scan / Enumeration" --> DC
+    K -- "Discovery" --> GW
+
+    %% Tok logů
+    W11 -- "Logy" --> U
+    DC -- "Logy" --> U
+    
+    %% Přístup k dashboardu
+    DC -. "GUI Access (Kibana)" .-> U
 ```
 
 ---
