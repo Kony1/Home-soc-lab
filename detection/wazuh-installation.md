@@ -79,5 +79,31 @@ snapshot ubuntu OS: Ubuntu Server (LTS) --- Wazuh-AIO-Static-192.168.20.40-Funct
 _________________________________________________________________________________________________
 
 
+📝 Lab Update: Wazuh Agent Hardening & FIM Configuration
+
+🛠️ Task: Network Migration & Agent Optimization
+
+Migrace Windows Serveru z Bridged (pro stažení balíčků) zpět do izolovaného labu Host-only (VMnet1) a konfigurace hloubkového monitoringu.
+
+
+🔧 Wazuh Agent Configuration (ossec.conf)
+
+Pro zajištění detekce útoků v reálném čase a sledování manipulace se soubory byly upraveny následující sekce:
+File Integrity Monitoring (FIM): Zapnut režim realtime="yes" pro kritické cesty
+
+ossec.conf
+uprava realtime, check_all, report changes v syschecku 
+
+Security Configuration Assessment (SCA): Aktivován audit shody s bezpečnostními standardy (aktuální skóre DC01: 37 %).
+
+
+
+
+
+
+
+
+
+
 
 
