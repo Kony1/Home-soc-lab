@@ -142,6 +142,16 @@ ______________________________________
 Přihlášení do Dashboardu a přidání agentů 
 
 
+Příkazy:
+
+seznam agentů ubuntu
+sudo /var/ossec/bin/manage_agents -l
+
+powershell win
+rychla zmena ip v ossec.conf agenta
+(Get-Content "C:\Program Files (x86)\ossec-agent\ossec.conf") -replace "<address>.*</address>", "<address>192.168.20.40</address>" | Set-Content "C:\Program Files (x86)\ossec-agent\ossec.conf"
+
+
 
 
 
