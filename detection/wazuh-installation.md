@@ -96,6 +96,62 @@ uprava realtime, check_all, report changes v syschecku
 
 Security Configuration Assessment (SCA): Aktivován audit shody s bezpečnostními standardy (aktuální skóre DC01: 37 %).
 
+_________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________
+
+Instalace Wazuh-indexer, server a dashboard na Ubuntu server 
+
+https://documentation.wazuh.com/current/installation-guide/index.html
+
+curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh
+curl -sO https://packages.wazuh.com/4.14/config.yml
+__________________________________________________
+
+můj yml:
+indexer:
+  - name: node-1
+    ip: "192.168.20.40"
+
+server:
+  - name: wazuh-1
+    ip: "192.168.20.40"
+
+dashboard:
+  - name: dashboard
+    ip: "192.168.20.40"
+_________________________
+
+Generuj konfigurační soubory (klíče, certifikáty, hesla):
+sudo bash wazuh-install.sh --generate-config-files
+__________________________
+
+Instalování komponent: 
+Indexer: sudo bash wazuh-install.sh --wazuh-indexer node-1
+sudo bash wazuh-install.sh --start-cluster
+
+Manager: sudo bash wazuh-install.sh --wazuh-server wazuh-1
+
+Dashboard: sudo bash wazuh-install.sh --wazuh-dashboard dashboard
+
+kontrola služeb:
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-dashboard
+______________________________________
+
+Přihlášení do Dashboardu a přidání agentů 
+
+
+
+
+
+
+
+
+    
+
+
+
 
 
 
