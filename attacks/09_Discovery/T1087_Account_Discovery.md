@@ -12,7 +12,7 @@ User: LAB\Petr.Novak
 
 Host: Win11_Victim (192.168.30.10)
 
-Domain Controller: DC01.lab.local
+Domain Controller: DC01.lab.local (192.168.20.10)
 _______________________________________
 
 ### 1. Analýza aktivity útočníka
