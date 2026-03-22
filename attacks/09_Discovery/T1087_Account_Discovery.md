@@ -3,6 +3,9 @@
 
 Discovery → Account Discovery (Local + Domain)  
 
+T1087.002 popisuje techniky, kdy útočník zjišťuje doménové účty a skupiny. V tomto runu jsem simuloval běžné příkazy, které útočníci používají po získání přístupu k doménovému účtu.
+____________________________________________________________________________________________________________________________________________________________________________________
+
 Date: 2026‑03‑22
 
 User: LAB\Petr.Novak
@@ -10,8 +13,9 @@ User: LAB\Petr.Novak
 Host: Win11_Victim (192.168.30.10)
 
 Domain Controller: DC01.lab.local
+_______________________________________
 
-### 1. Attack Narrative
+### 1. Analýza aktivity útočníka
 
 Útočník má platný doménový účet Petr.Novak a provádí průzkum účtů na kompromitovaném stroji Win11.
 
@@ -61,7 +65,7 @@ net user /domain
 Logy:
 
 Win11:
-4688 – Process Creation (net.exe
+4688 – Process Creation (net.exe)
 
 <img width="601" height="395" alt="image" src="https://github.com/user-attachments/assets/ba29f5b1-bf3c-4a98-88d9-1a933f71106e" />
 
@@ -88,7 +92,7 @@ Win11:
 
 
 
-DCO1:
+DC01:
 4624 – Network Logon
 
 <img width="524" height="394" alt="image" src="https://github.com/user-attachments/assets/39a686d9-e2e9-4291-8489-0aa0e249e1ff" />
@@ -126,49 +130,42 @@ DC01:
 
 
 
-6. Wazuh Detection
-Wazuh zachytil aktivitu jako:
+### 6. Wazuh Detection
 
-T1087 – Account Discovery
+Wazuh agent na stanici Win11 zachytil vytvoření procesu net1.exe s parametrem group /domain. Tento alert reprezentuje detekci příkazů používaných pro enumeraci doménových uživatelů a skupin (např. net user /domain, net group /domain, net group "Domain Admins" /domain).
+Níže uvedený log slouží jako ukázka detekce:
 
-Reconnaissance
 
-Suspicious enumeration
 
-Screenshot sem →
+<img width="660" height="661" alt="image" src="https://github.com/user-attachments/assets/fb760911-da7d-40a6-adc9-4ea1c3044ebb" />
+
+
 
 ### 🧩 . Závěr
-Útočník provedl kompletní průzkum účtů a skupin v doméně.
+Útočník provedl průzkum účtů a skupin v doméně.
+
 Detekce proběhla na:
 
 Win11 (lokální logy)
 
 DC01 (LDAP + logon)
 
-Wazuh (MITRE alerty)
-
+Wazuh detekce:  
 
 Tento run mi pomohl pochopit, jak Windows a DC logují průzkum účtů.
 Zjistil jsem několik důležitých věcí:
 
-Běžný doménový uživatel může enumerovat lokální i doménové účty pomocí net příkazů.
+Běžný doménový uživatel může zjistit lokální i doménové účty pomocí net příkazů.
 
-I bez RSATu se na DC01 generují LDAP dotazy a Directory Service Access logy.
-
-Win11 loguje enumeraci skupin (4799), což jsem dřív neznal.
-
-Wazuh automaticky mapuje tyto akce na MITRE T1087 a označuje je jako reconnaissance.
+Wazuh detekuje tyto akce 
 
 Celý proces je bezpečný a ideální pro učení — nic jsem nepoškodil, jen jsem sledoval logy.
 
 Beru to jako další krok v učení.
-Není to dokonalé, ale je to reálné, pochopitelné 
+Není to dokonalé, ale je to reálné
 
 
 
 
 
 
-PowerShell enumeration activity
-
-(Sem vlož screenshoty Wazuh alertů)
