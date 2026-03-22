@@ -3,7 +3,7 @@
 
 Discovery → Account Discovery (Local + Domain)  
 
-T1087.002 popisuje techniky, kdy útočník zjišťuje doménové účty a skupiny. V tomto runu jsem simuloval běžné příkazy, které útočníci používají po získání přístupu k doménovému účtu.
+T1087.002 popisuje techniku, kdy útočník zjišťuje doménové účty a skupiny. V tomto runu jsem simuloval běžné příkazy, které útočníci používají po získání přístupu k doménovému účtu.
 ____________________________________________________________________________________________________________________________________________________________________________________
 
 Date: 2026‑03‑22
