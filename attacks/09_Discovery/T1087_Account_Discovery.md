@@ -145,12 +145,11 @@ Níže uvedený log slouží jako ukázka detekce:
 Útočník provedl průzkum účtů a skupin v doméně.
 
 Detekce proběhla na:
+Win11 → PowerShell + CMD (net.exe)
 
-Win11 (lokální logy)
+DC01 → jen logon eventy (4624)
 
-DC01 (LDAP + logon)
-
-Wazuh detekce:  
+Wazuh → alert na net1.exe
 
 Tento run mi pomohl pochopit, jak Windows a DC logují průzkum účtů.
 Zjistil jsem několik důležitých věcí:
