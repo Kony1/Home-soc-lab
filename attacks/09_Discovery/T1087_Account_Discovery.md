@@ -45,7 +45,7 @@ Příkaz:
 Get-LocalGroupMember -Group "Administrators"
 ```
 
-Očekávaný log:
+Win11 log:
 
 <img width="654" height="266" alt="image" src="https://github.com/user-attachments/assets/a50f587d-c66c-4ef6-95eb-5567ec655419" />
 
@@ -60,28 +60,42 @@ net user /domain
 
 Logy:
 
-4688 – Process Creation (net.exe)
+Win11:
+4688 – Process Creation (net.exe
 
-4624 – Logon Type 3 (DC01)
+<img width="601" height="395" alt="image" src="https://github.com/user-attachments/assets/ba29f5b1-bf3c-4a98-88d9-1a933f71106e" />
 
-4662 – Directory Service Access (LDAP)
 
-(Sem vlož screenshoty)
+DC01:
+4624 – Network Logon
+
+
+<img width="524" height="394" alt="image" src="https://github.com/user-attachments/assets/0a7fb609-1be4-4dbd-a344-122e794cfb03" />
+
+
+
+
 
 ### 🔹 Doménové skupiny
 ```
 net group /domain
 ```
 Logy:
-
+Win11: 
 4688 – net.exe
 
-4662 – LDAP dotazy
+<img width="559" height="382" alt="image" src="https://github.com/user-attachments/assets/63d184d2-03f6-42f9-9469-a191de2f572b" />
 
+
+
+DCO1:
 4624 – Network Logon
 
+<img width="524" height="394" alt="image" src="https://github.com/user-attachments/assets/39a686d9-e2e9-4291-8489-0aa0e249e1ff" />
 
-(Sem vlož screenshoty)
+
+
+
 
 
 ### 🔹 Členové Domain Admins (HLAVNÍ ARTEFAKT)
@@ -92,21 +106,24 @@ net group "Domain Admins" /domain
 
 Logy:
 
+
 Win11:
-4799 – Group Membership Enumeration
+4688 – net.exe
 
-TargetUserName: Domain Admins
+<img width="547" height="384" alt="image" src="https://github.com/user-attachments/assets/0eaba045-ca72-44b2-8fd0-d4ab152f89bd" />
 
-SubjectUserName: Petr.Novak
+
 
 DC01:
-4662 – LDAP dotaz na Domain Admins
+
 
 4624 – Logon Type 3
 
-4688 – net.exe
+<img width="524" height="394" alt="image" src="https://github.com/user-attachments/assets/7d6f9bcb-3b2d-4e37-8a5b-b332f5257728" />
 
-(Sem vlož hlavní screenshot 4799 + DC logy)
+
+
+
 
 
 6. Wazuh Detection
