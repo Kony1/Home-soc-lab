@@ -65,3 +65,44 @@ Toto je část logu, kterou uvidíš ve Wazuhu po úspěšné detekci:
 Firewall: Omezit povolené IP adresy, které mohou přistupovat k citlivým portům.
 
 IPS: Zapnout automatické blokování IP adres (Active Response), které vykazují známky skenování.
+
+
+
+## Run #1 –  2026-03-22 13:24
+
+### Popis techniky
+
+Útočník provádí aktivní síťový průzkum (ping sweep + SYN scan) s cílem identifikovat živé hosty a zjistit, které služby jsou dostupné. Ping sweep využívá ICMP Echo Request k detekci aktivních zařízení. SYN scan zneužívá první krok TCP handshake (SYN) k ověření, zda je port otevřený, aniž by dokončil celé navázání spojení.
+## Použité příkazy
+<img width="562" height="302" alt="image" src="https://github.com/user-attachments/assets/a12fd24a-6edb-45e4-8f01-bf22aa6e7029" />
+
+
+### Výsledky
+- 192.168.20.1 – OPNsense LAN gateway  
+- 192.168.20.10 – Windows 11  
+- 192.168.20.40 – Ubuntu  
+- 192.168.30.1 – OPNsense CLIENT gateway  
+- 192.168.30.10 – Windows klient  
+
+ 
+
+### Závěr
+
+Útok proběhl 13:24 
+
+Suricata detekovala ICMP ping sweep.
+
+OPNsense firewall blokoval TCP SYN pakety.
+
+Wazuh zachytil logy
+
+
+
+<img width="447" height="184" alt="image" src="https://github.com/user-attachments/assets/c87a7e12-200a-428b-b541-12a3e0bd6af5" />
+<img width="533" height="197" alt="image" src="https://github.com/user-attachments/assets/5afdbb12-a2c8-405c-82ab-940953c578b7" />
+
+
+
+
+
+
