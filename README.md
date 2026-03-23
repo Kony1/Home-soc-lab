@@ -1,4 +1,4 @@
-# 🏗️ Home SOC Lab Architecture (2025)
+# 🏗️ Home SOC Lab Architecture 
 Tento dokument popisuje aktuální architekturu mého domácího SOC/Red Team labu.
 Lab je navržen jako segmentované, izolované a realistické prostředí, které umožňuje:
 
