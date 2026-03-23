@@ -1,82 +1,153 @@
-# 🏗️ Home SOC Lab Architecture
+# 🏗️ Home SOC Lab Environment
 
-Tento dokument detailně popisuje infrastrukturu mého detekčního labu. Lab je navržen jako izolované prostředí pro bezpečné testování útoků a monitorování síťové aktivity.
+Tento dokument detailně popisuje infrastrukturu mého domácího SOC/Red Team labu.
+Lab je navržen jako segmentované, izolované a realistické prostředí, které umožňuje bezpečné testování MITRE ATT&CK technik, sběr logů a tvorbu detekcí.
 
-## 🎯 Cíle projektu
-* **Simulace útoků:** Testování ofenzivních technik (Attacker).
-* **Analýza logů:** Sběr dat z koncových bodů (Victim + Server).
-* **Detekce & Monitoring:** Konfigurace SIEM pravidel a vizualizace hrozeb.
+# 🎯 Cíle projektu
 
----
+Simulace útoků: Praktické provádění MITRE ATT&CK technik z útočné zóny.
 
-## 🛰️ Síťová topologie (Network Design)
+Analýza logů: Sběr a korelace dat z klientských i serverových systémů.
 
-Lab běží v izolované virtuální síti (VMware Host-only), aby byla zajištěna bezpečnost hlavní sítě.
+Detekce & Monitoring: Wazuh SIEM + Sysmon + Windows audit policy.
 
-* **Network Scheme:** `192.168.20.0/24`
-* **Gateway:** `192.168.20.1`
-* **DHCP/DNS:** Windows Server 2022
-* **Statické IP:** Všechny uzly mají pevně definované adresy pro konzistentní logování.
+Dokumentace: Každá technika má vlastní markdown soubor s příkazy, screenshoty a logy.
 
----
+# 🛰️ Síťová architektura (Network Design)
+Lab běží ve VMware Workstation a je rozdělen do čtyř izolovaných zón, které simulují reálné podnikové prostředí.
+Segmentace je řízena přes OPNsense firewall, který zajišťuje:
 
+oddělení sítí
+
+firewall pravidla
+
+NAT
+
+monitoring provozu
+
+Zóny a IP rozsahy
+Zóna	VMnet	IP rozsah	Zařízení	Role
+WAN	VMnet0 (Bridged)	DHCP	OPNsense WAN	Přístup k internetu
+SERVER	VMnet1 (Host-only)	192.168.20.0/24	WinServer (.10), Ubuntu Wazuh (.40)	AD · SIEM
+CLIENT	VMnet2 (Host-only)	192.168.30.0/24	Windows 11 Pro (.10)	User endpoint
+ATTACK	VMnet3 (Host-only)	192.168.40.0/24	Kali Linux (.10)	Útočník
 ## 🖥️ Jednotlivé uzly (Nodes)
 
-### 1. Attacker — Kali Linux `192.168.20.30` ✅
-> *Výchozí bod pro všechny ofenzivní operace.*
-* **OS:** Kali Linux 2025.1
-* **Klíčové nástroje:**
-  * `Nmap` — Síťové skenování a objevování služeb.
-  * `Enum4linux` — Enumerace Windows/AD informací.
-  * `Hydra` — Brute-force útoky na protokoly.
-  * `Metasploit` — Exploitace zranitelností.
+#### 1. Attack Zone — Kali Linux
+192.168.40.10
 
-### 2. Victim Workstation — Windows 11 `192.168.20.20` ✅
-> *Koncový bod simulující běžného uživatele v doméně.*
-* **OS:** Windows 11 Pro
-* **Role:** Cíl útoků, generování klientského provozu.
-* **Monitoring:** Wazuh Agent + Sysmon (pro detailní logování procesů).
+Výchozí bod pro všechny ofenzivní operace a MITRE ATT&CK techniky.
 
-### 3. Domain Controller — Windows Server 2022 `192.168.20.10` ✅
-> *Srdce labu, správa identit a autentizace.*
-* **Služby:** Active Directory DS, DNS, DHCP.
-* **Auditování:** Nastaveno rozšířené logování úspěšných i neúspěšných přihlášení (Event ID 4624/4625).
+OS: Kali Linux 2025
+Klíčové nástroje:
 
-### 4. SIEM / Logging — Ubuntu Server `192.168.20.40`
-> *Centrální mozek pro analýzu a vizualizaci hrozeb.*
-* **OS:** Ubuntu Server 22.04 LTS
-* **Stack:**
-  * **Wazuh Manager:** Sběr logů a real-time detekce.
-  * **Indexer (Elasticsearch):** Rychlé vyhledávání v milionech logů.
-  * **Dashboard (Kibana):** Tvorba reportů a sledování alertů.
+Nmap (network discovery)
 
----
+CrackMapExec (lateral movement & enumeration)
 
-## 📊 Diagram sítě
-```mermaid
-graph TD
-    subgraph "Útočná zóna"
-        K[Kali Linux<br/>192.168.20.30]
-    end
+Impacket (SMB, Kerberos, AD útoky)
 
-    subgraph "Vnitřní síť (Skenovaný rozsah)"
-        W11[Windows 11 Target<br/>192.168.20.20]
-        DC[Domain Controller<br/>192.168.20.10]
-        GW[Gateway / Ostatní zařízení<br/>192.168.20.1]
-    end
+BloodHound (AD graph analysis)
 
-    subgraph "SOC / Monitoring"
-        U[Ubuntu Wazuh SIEM<br/>192.168.20.40]
-    end
+Metasploit Framework
 
-    %% Útoky / Skenování na celý rozsah
-    K -- "Nmap Scan / Enumeration" --> W11
-    K -- "Nmap Scan / Enumeration" --> DC
-    K -- "Discovery" --> GW
+#### 2. Client Workstation — Windows 11 Pro
 
-    %% Tok logů
-    W11 -- "Logy" --> U
-    DC -- "Logy" --> U
-    
-    %% Přístup k dashboardu
-    DC -. "GUI Access (Kibana)" .-> U
+192.168.30.10
+
+Simulace běžného uživatele v doméně, hlavní cíl útoků.
+
+Role:
+
+User endpoint
+
+Generování autentického provozu
+
+Cíl MITRE technik (Discovery, PrivEsc, Execution…)
+
+Monitoring:
+
+Wazuh Agent
+
+Sysmon (detailní logování procesů, síťových událostí a registru)
+
+####3. Domain Controller — Windows Server 2022
+
+192.168.20.10
+
+Srdce labu — správa identit, autentizace a infrastruktury.
+
+Služby:
+
+Active Directory Domain Services
+
+DNS
+
+DHCP (pro serverovou síť)
+
+Auditování:
+
+Rozšířené logování (4624, 4625, 4672, 4688…)
+
+Logy odesílány do Wazuh SIEM
+
+#### 4. SIEM / Logging — Ubuntu Server (Wazuh)
+
+192.168.20.40
+
+Centrální mozek pro analýzu hrozeb, detekce a vizualizaci.
+
+OS: Ubuntu Server 22.04 LTS
+Stack:
+
+Wazuh Manager — sběr logů, real-time detekce
+
+Wazuh Indexer — rychlé vyhledávání v logech
+
+Wazuh Dashboard — vizualizace, alerty, reporting
+
+## 📁 MITRE ATT&CK Struktura (aktuální stav)
+Techniky jsou organizované podle taktik (např. Reconnaissance, Privilege Escalation).
+Každá taktika má vlastní složku a v ní jsou jednotlivé techniky jako .md soubory.
+
+Příklad:
+
+Kód
+attacks/
+   01_Reconnaissance/
+      T1087_Account_Discovery.md
+      T1046_Network_Service_Scanning.md
+
+   06_Privilege_Escalation/
+      T1053_Scheduled_Task.md
+Každý .md obsahuje:
+
+popis útoku
+
+příkazy (PowerShell/CMD/Kali)
+
+screenshoty
+
+logy z Win11, DC01, Wazuh
+
+troubleshooting
+
+detekční poznámky
+
+Runy jsou zatím psané pod sebou v jednom souboru.
+Později budou rozdělené do Run1/Run2/Run3.
+
+#### 🔜 Plánované rozšíření
+Oddělení MITRE technik do Run1/Run2/Run3
+
+Přidání Windows 11 ART jako Red Team endpoint
+
+Integrace Suricata IDS/IPS na OPNsense
+
+Cloud SIEM Sentinel 
+
+Přidání Sigma rules
+
+Tvorba hunting queries
+
+Rozšíření detekcí ve Wazuh
