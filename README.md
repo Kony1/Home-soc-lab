@@ -23,7 +23,8 @@ Dokumentace: Každá technika má vlastní „Run“ se screenshoty, logy a anal
 Lab běží ve VMware Workstation a je rozdělen do izolovaných zón, které simulují reálné podnikové prostředí.
 
 
-<img width="598" height="393" alt="image" src="https://github.com/user-attachments/assets/f3f646c6-acf0-4acb-826c-844814e91844" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/1b666b71-bed1-405c-8830-034ee936e34a" />
+
 
                           
 # 🔌 OPNsense – síťová rozhraní + Zóny
