@@ -80,19 +80,16 @@ Generuje autentické logy pro SIEM
 Kali Linux
 192.168.40.10
 
-
-# 📊 Diagram zón
-
-<img width="725" height="210" alt="image" src="https://github.com/user-attachments/assets/d5325993-bbf7-4ebf-83af-3d93e6333f98" />
-
 # 🧪 MITRE ATT&CK Runs
 
 Každá technika má vlastní složku:
 
-Kód
+```
 attacks/
    06_Privilege_Escalation/
       T1053_Scheduled_Task.md   ← všechny runy v jednom souboru
+```
+
 Každý run obsahuje:
 
 popis útoku
