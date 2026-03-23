@@ -60,7 +60,18 @@ Wazuh Indexer
 
 Wazuh Dashboard
 
-Centrální sběr logů z Win11, DC01, útočníka
+Centrální sběr logů: 
+
+Windows 11 (CLIENT) – Wazuh Agent + Sysmon
+
+Windows Server 2022 (SERVER) – Wazuh Agent + AD audit logy
+
+Ubuntu Wazuh Server – vlastní systémové logy
+
+OPNsense Firewall – Wazuh Agent + Suricata IDS/IPS alerty
+
+Útočník (Kali Linux) nemá Wazuh agenta – generuje pouze síťové artefakty zachytitelné Suricatou.
+
 
 Používá se pro detekce MITRE ATT&CK technik
 
