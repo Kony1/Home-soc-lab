@@ -77,7 +77,11 @@ Očekávané eventy:
 
 <img width="602" height="427" alt="image" src="https://github.com/user-attachments/assets/4e670789-afae-4302-9952-ad5e8651f7d2" />
 
-4698	  Security	      Vytvoření nové plánované úlohy
+
+
+Event ID 4698 se v tomto běhu nevygeneroval, protože audit policy pro Task Scheduler není ve Windows defaultně zapnutá. To je běžné chování.
+
+
 
 
 🖥️ DC01 – Doménové logy
@@ -116,7 +120,7 @@ Event ID: 4688 (Process Creation)
 
 
 
-#### Alert na vytvoření nebo modifikaci plánované úlohy
+#### Alert na spuštění příkazu whoami.exe naplánovanou úlohou
 
 ```
 NewProcessName: C:\Windows\System32\whoami.exe
