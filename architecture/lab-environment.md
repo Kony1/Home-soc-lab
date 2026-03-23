@@ -21,16 +21,11 @@ oddělení sítí
 
 firewall pravidla
 
-NAT
 
 monitoring provozu
 
-Zóny a IP rozsahy
-Zóna	VMnet	IP rozsah	Zařízení	Role
-WAN	VMnet0 (Bridged)	DHCP	OPNsense WAN	Přístup k internetu
-SERVER	VMnet1 (Host-only)	192.168.20.0/24	WinServer (.10), Ubuntu Wazuh (.40)	AD · SIEM
-CLIENT	VMnet2 (Host-only)	192.168.30.0/24	Windows 11 Pro (.10)	User endpoint
-ATTACK	VMnet3 (Host-only)	192.168.40.0/24	Kali Linux (.10)	Útočník
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/51a87504-398b-42eb-88cd-e3e030b83681" />
+
 ## 🖥️ Jednotlivé uzly (Nodes)
 
 #### 1. Attack Zone — Kali Linux
