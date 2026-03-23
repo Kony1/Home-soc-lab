@@ -81,6 +81,27 @@ Generuje autentické logy pro SIEM
 Kali Linux
 192.168.40.10
 
+
+## 🛡️ IDS/IPS – Suricata (OPNsense)
+OPNsense firewall má aktivní Suricata IDS/IPS, která monitoruje provoz na všech interních zónách:
+
+SERVER (em1)
+
+CLIENT (em2)
+
+ATTACK (em3)
+
+Suricata poskytuje:
+
+detekci síťových útoků
+
+alerty pro MITRE techniky
+
+možnost blokování (IPS mód)
+
+integraci s Wazuh (přes syslog)
+
+
 # 🧪 MITRE ATT&CK Runs
 
 Každá technika má vlastní složku:
