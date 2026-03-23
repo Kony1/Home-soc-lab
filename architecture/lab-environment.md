@@ -73,7 +73,7 @@ Sysmon (detailní logování procesů, síťových událostí a registru)
 
 
 
-####3. Domain Controller — Windows Server 2022
+#### 3. Domain Controller — Windows Server 2022
 
 192.168.20.10
 
@@ -99,7 +99,7 @@ Logy odesílány do Wazuh SIEM
 
 Centrální mozek pro analýzu hrozeb, detekce a vizualizaci.
 
-OS: Ubuntu Server 22.04 LTS
+#### OS: Ubuntu Server 22.04 LTS
 Stack:
 
 Wazuh Manager — sběr logů, real-time detekce
@@ -147,8 +147,19 @@ Oddělení MITRE technik do Run1/Run2/Run3
 Přidání Windows 11 ART jako Red Team endpoint
 
 Integrace Suricata IDS/IPS na OPNsense
+✔️ Suricata běží na OPNsense
 
-Cloud SIEM Sentinel 
+✔️ Logy se úspěšně zobrazují ve Wazuh
+
+✔️ ET Open Rules jsou načtené
+
+🔄 Probíhá kontrola správnosti alertů
+
+🔄 Probíhá ladění pravidel a rozhraní
+
+🔄 IPS mód zatím není aktivní (volitelné)
+
+přidání Cloud SIEM Sentinel 
 
 Přidání Sigma rules
 
