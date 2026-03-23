@@ -164,9 +164,9 @@ přidání Cloud SIEM Sentinel
 
 přidáni VPN infrastruktura (Wireguard/OPenVPN/OPNsense)  
 
-přídiání Databázový server -Ubuntu Server(PostgreSQL/MariaDB)
+přídání Databázový server -Ubuntu Server(PostgreSQL/MariaDB)
 
-Přidání Sigma rules
+přidání Sigma rules
 
 Tvorba hunting queries
 
