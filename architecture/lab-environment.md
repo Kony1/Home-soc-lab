@@ -26,7 +26,10 @@ monitoring provozu
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/51a87504-398b-42eb-88cd-e3e030b83681" />
 
+
+
 ## 🖥️ Jednotlivé uzly (Nodes)
+
 
 #### 1. Attack Zone — Kali Linux
 192.168.40.10
@@ -45,6 +48,8 @@ Impacket (SMB, Kerberos, AD útoky)
 BloodHound (AD graph analysis)
 
 Metasploit Framework
+
+
 
 #### 2. Client Workstation — Windows 11 Pro
 
@@ -65,6 +70,8 @@ Monitoring:
 Wazuh Agent
 
 Sysmon (detailní logování procesů, síťových událostí a registru)
+
+
 
 ####3. Domain Controller — Windows Server 2022
 
@@ -101,13 +108,14 @@ Wazuh Indexer — rychlé vyhledávání v logech
 
 Wazuh Dashboard — vizualizace, alerty, reporting
 
+
 ## 📁 MITRE ATT&CK Struktura (aktuální stav)
 Techniky jsou organizované podle taktik (např. Reconnaissance, Privilege Escalation).
 Každá taktika má vlastní složku a v ní jsou jednotlivé techniky jako .md soubory.
 
 Příklad:
 
-Kód
+```
 attacks/
    01_Reconnaissance/
       T1087_Account_Discovery.md
@@ -115,6 +123,7 @@ attacks/
 
    06_Privilege_Escalation/
       T1053_Scheduled_Task.md
+```
 Každý .md obsahuje:
 
 popis útoku
