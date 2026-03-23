@@ -20,7 +20,7 @@ Analýza logů: Korelace událostí mezi klientem, serverem a útočníkem.
 Dokumentace: Každá technika má vlastní „Run“ se screenshoty, logy a analýzou.
 
 # 🛰️ Síťová topologie
-Lab běží ve VMware Workstation a je rozdělen do čtyř izolovaných zón, které simulují reálné podnikové prostředí.
+Lab běží ve VMware Workstation a je rozdělen do izolovaných zón, které simulují reálné podnikové prostředí.
 
 
 <img width="598" height="393" alt="image" src="https://github.com/user-attachments/assets/f3f646c6-acf0-4acb-826c-844814e91844" />
