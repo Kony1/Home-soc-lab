@@ -1,4 +1,4 @@
-# Wazuh Installation (Ubuntu Server)
+# Wazuh Installation (Ubuntu Server) " OLD LAB Version "
 
 ## Environment
 
