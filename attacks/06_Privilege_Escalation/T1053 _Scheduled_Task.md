@@ -55,18 +55,12 @@ Cíl techniky:
 Použitý příkaz (CMD nebo PowerShell):
 
 powershell
-PS C:\WINDOWS\System32> C:\WINDOWS\System32\schtasks.exe /create /tn "Updater" /tr "cmd.exe /c whoami" /sc once /st 11:45
-SUCCESS: The scheduled task "Updater" has successfully been created.
 
 <img width="892" height="19" alt="image" src="https://github.com/user-attachments/assets/1f1f7559-f093-4268-857b-6191dfcc853c" />
 
-
-schtasks /create /tn "Updater" /tr "cmd.exe /c whoami > C:\temp\out.txt" /sc once /st 12:00
 Popis:
 
 Útočník vytváří novou plánovanou úlohu s názvem Updater.
-
-Úloha spustí příkaz whoami a uloží výstup do C:\temp\out.txt.
 
 Technika se používá pro privilege escalation nebo persistence.
 
@@ -77,17 +71,14 @@ Technika se používá pro privilege escalation nebo persistence.
 
 Očekávané eventy:
 
-Event      ID	                Zdroj	Popis
+```
 4688	  Security      	Vytvoření procesu (schtasks.exe)
+```
 
 <img width="602" height="427" alt="image" src="https://github.com/user-attachments/assets/4e670789-afae-4302-9952-ad5e8651f7d2" />
 
 4698	  Security	      Vytvoření nové plánované úlohy
 
-
-4702	  Security	      Změna existující úlohy (pokud proběhne)
-7045	  System	        Vytvoření nové služby (pokud task vytvoří service wrapper)
-Sem doplníš screenshoty + časy.
 
 🖥️ DC01 – Doménové logy
 
@@ -95,7 +86,9 @@ U této techniky se obvykle objeví jen:
 
 Event ID	Popis
 
+```
 4624	Logon Type 3 (pokud task komunikuje se sítí)
+```
 
 <img width="538" height="289" alt="image" src="https://github.com/user-attachments/assets/5b62b7e8-8a1b-49ce-90ea-2b8937d46dd9" />
 
@@ -105,8 +98,8 @@ Event ID	Popis
 
 Očekávané:
 
-#### Alert na vytvoření procesu schtasks.exe
-
+#### Alert na spuštění příkazu whoami.exe naplánovanou úlohou
+```
 NewProcessName: C:\Windows\System32\schtasks.exe
 
 CommandLine: "schtasks.exe" /query /tn Updater
@@ -116,7 +109,7 @@ ParentProcess: powershell.exe
 User: LAB\Petr.Novak
 
 Integrity Level: S-1-16-8192 (High Integrity)
-
+```
 Event ID: 4688 (Process Creation)
 
 <img width="780" height="624" alt="image" src="https://github.com/user-attachments/assets/ae4e1edf-23ca-4762-b2d8-4af330341502" />
@@ -125,6 +118,7 @@ Event ID: 4688 (Process Creation)
 
 #### Alert na vytvoření nebo modifikaci plánované úlohy
 
+```
 NewProcessName: C:\Windows\System32\whoami.exe
 
 CommandLine: whoami
@@ -134,6 +128,7 @@ ParentProcess: C:\Windows\System32\cmd.exe
 User: LAB\Petr.Novak
 
 Integrity Level: S-1-16-8192 (High Integrity)
+```
 
 Event ID: 4688 (Process Creation)
 
@@ -161,9 +156,11 @@ Wazuh – alert na vytvoření procesu schtasks.exe / modifikaci tasku
 
 ### 6️⃣ Závěr
 
-Technika úspěšně provedena
+Detekce proběhla napříč všemi vrstvami infrastruktury — na úrovni endpointu (Win11), doménového řadiče (DC01) i SIEM vrstvy (Wazuh). To potvrzuje správnou konfiguraci logovací pipeline a konzistentní sběr bezpečnostních událostí.
 
-Logy byly zachyceny na Win11, DC01 a Wazuh
+„Tento run věrně simuluje reálné chování útočníka, který využívá plánované úlohy pro privilege escalation nebo persistence.“
 
-Co ses naučil: (doplníš)
+
+
+
 
