@@ -142,6 +142,7 @@ Runy jsou zatím psané pod sebou v jednom souboru.
 Později budou rozdělené do Run1/Run2/Run3.
 
 #### 🔜 Plánované rozšíření
+
 Oddělení MITRE technik do Run1/Run2/Run3
 
 Přidání Windows 11 ART jako Red Team endpoint
@@ -160,6 +161,10 @@ Integrace Suricata IDS/IPS na OPNsense
 🔄 IPS mód zatím není aktivní (volitelné)
 
 přidání Cloud SIEM Sentinel 
+
+přidáni VPN infrastruktura (Wireguard/OPenVPN/OPNsense)  
+
+přídiání Databázový server -Ubuntu Server(PostgreSQL/MariaDB)
 
 Přidání Sigma rules
 
