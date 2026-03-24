@@ -1,4 +1,4 @@
-# 🔍 Sysmon Event ID Cheat Sheet (pro SOC Lab)
+# 🔍 Sysmon Event ID Cheat Sheet 
 
 Tento přehled používám pro korelaci útoků (MITRE ATT&CK) a analýzu logů ve Wazuh SIEMu.
 
