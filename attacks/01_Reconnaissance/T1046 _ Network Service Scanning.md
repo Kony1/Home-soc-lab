@@ -105,11 +105,7 @@ nmap testuje por 156 jako jeden z prvnich
 <img width="590" height="189" alt="image" src="https://github.com/user-attachments/assets/8e86f223-3d0a-4a9e-b40b-c1830a5dbb76" />
 
 
-Windows Firewall loguje:
 
-povolené spojení
-
-blokované spojení
 
 
 
