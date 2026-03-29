@@ -50,7 +50,7 @@ update
 | **11** |	Cached logon (offline). |
 
 
-##⚙️ Procesy & Systém
+## ⚙️ Procesy & Systém
 
 | Event | ID | Název | Význam |
 | :--- | :--- | :--- |
@@ -62,7 +62,7 @@ update
 1102	Audit Log Cleared	Útočník maže stopy.
 
 
-##🌐 Síť & Scanning (DŮLEŽITÉ PRO NMAP)
+## 🌐 Síť & Scanning (DŮLEŽITÉ PRO NMAP)
 
 Tyhle eventy budou padat při scanu z Kali.
 
@@ -74,7 +74,7 @@ Tyhle eventy budou padat při scanu z Kali.
 | **5158** | Filtering Platform Allowed Bind | Proces si otevřel port (užitečné při malware). |
 
 
-##💡 Co uvidíš při Nmap scanu
+## 💡 Co uvidíš při Nmap scanu
 | :--- | :--- | :--- |
 Typ scanu	Co se objeví v logách
 Ping sweep (-sn)	5156 (ICMP), Sysmon ID 3 (ARP/ICMP)
@@ -83,7 +83,7 @@ Service detection (-sV)	5156 (více handshake pokusů)
 OS detection (-O)	5156/5157 (speciální fingerprint pakety)
 
 
-##🛡️ Účty & Skupiny
+## 🛡️ Účty & Skupiny
 
 Event ID	Název	Význam
 | :--- | :--- | :--- |
