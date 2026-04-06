@@ -3,15 +3,15 @@
 Tento dokument detailně popisuje infrastrukturu mého domácího SOC/Red Team labu.
 Lab je navržen jako segmentované, izolované a realistické prostředí, které umožňuje bezpečné testování MITRE ATT&CK technik, sběr logů a tvorbu detekcí.
 
-# 🎯 Cíle projektu
+## 🎯 Cíle projektu
 
-Simulace útoků: Praktické provádění MITRE ATT&CK technik z útočné zóny.
+- Simulace útoků: Praktické provádění MITRE ATT&CK technik z útočné zóny.
 
-Analýza logů: Sběr a korelace dat z klientských i serverových systémů.
+- Analýza logů: Sběr a korelace dat z klientských i serverových systémů.
 
-Detekce & Monitoring: Wazuh SIEM + Sysmon + Windows audit policy.
+- Detekce & Monitoring: Wazuh SIEM + Sysmon + Windows audit policy.
 
-Dokumentace: Každá technika má vlastní markdown soubor s příkazy, screenshoty a logy.
+- Dokumentace: Každá technika má vlastní markdown soubor s příkazy, screenshoty a logy.
 
 # 🛰️ Síťová architektura (Network Design)
 Lab běží ve VMware Workstation a je rozdělen do čtyř izolovaných zón, které simulují reálné podnikové prostředí.
@@ -32,81 +32,77 @@ monitoring provozu
 
 
 #### 1. Attack Zone — Kali Linux
-192.168.40.10
 
-Výchozí bod pro všechny ofenzivní operace a MITRE ATT&CK techniky.
+- 192.168.40.10
 
-OS: Kali Linux 2025
+- Výchozí bod pro všechny ofenzivní operace a MITRE ATT&CK techniky.
+
 Klíčové nástroje:
 
-Nmap (network discovery)
+- Nmap (network discovery)
 
-CrackMapExec (lateral movement & enumeration)
+- CrackMapExec (lateral movement & enumeration)
 
-Impacket (SMB, Kerberos, AD útoky)
-
-BloodHound (AD graph analysis)
-
-Metasploit Framework
-
+- Impacket (SMB, Kerberos, AD útoky
 
 
 #### 2. Client Workstation — Windows 11 Pro
 
-192.168.30.10
+- 192.168.30.10
 
 Simulace běžného uživatele v doméně, hlavní cíl útoků.
 
 Role:
 
-User endpoint
+- User endpoint
 
-Generování autentického provozu
+- Generování autentického provozu
 
 Cíl MITRE technik (Discovery, PrivEsc, Execution…)
 
-Monitoring:
+- Monitoring:
 
-Wazuh Agent
+- Wazuh Agent
 
-Sysmon (detailní logování procesů, síťových událostí a registru)
+- Sysmon (detailní logování procesů, síťových událostí a registru)
 
 
 
 #### 3. Domain Controller — Windows Server 2022
 
-192.168.20.10
+- 192.168.20.10
 
 Srdce labu — správa identit, autentizace a infrastruktury.
 
 Služby:
 
-Active Directory Domain Services
+- Active Directory Domain Services
 
-DNS
+- DNS
 
-DHCP (pro serverovou síť)
+- DHCP (pro serverovou síť)
 
 Auditování:
 
-Rozšířené logování (4624, 4625, 4672, 4688…)
+- Rozšířené logování (4624, 4625, 4672, 4688…)
 
-Logy odesílány do Wazuh SIEM
+- Logy odesílány do Wazuh SIEM
 
 #### 4. SIEM / Logging — Ubuntu Server (Wazuh)
 
-192.168.20.40
+🔄  Nessus Essentials – reinstalace po refaktoringu labu
+- 192.168.20.40
 
 Centrální mozek pro analýzu hrozeb, detekce a vizualizaci.
 
 #### OS: Ubuntu Server 22.04 LTS
 Stack:
 
-Wazuh Manager — sběr logů, real-time detekce
+- Wazuh Manager — sběr logů, real-time detekce
 
-Wazuh Indexer — rychlé vyhledávání v logech
+- Wazuh Indexer — rychlé vyhledávání v logech
 
-Wazuh Dashboard — vizualizace, alerty, reporting
+- Wazuh Dashboard — vizualizace, alerty, reporting
 
 
 ## 📁 MITRE ATT&CK Struktura (aktuální stav)
@@ -126,28 +122,30 @@ attacks/
 ```
 Každý .md obsahuje:
 
-popis útoku
+- popis útoku
 
-příkazy (PowerShell/CMD/Kali)
+- příkazy (PowerShell/CMD/Kali)
 
-screenshoty
+- screenshoty
 
-logy z Win11, DC01, Wazuh
+- logy z Win11, DC01, Ubuntu Wazuh
 
-troubleshooting
+- troubleshooting
 
-detekční poznámky
+- detekční poznámky
 
 Runy jsou zatím psané pod sebou v jednom souboru.
-Později budou rozdělené do Run1/Run2/Run3.
 
-#### 🔜 Plánované rozšíření
+🔄 Později budou rozdělené do Run1/Run2/Run3.
 
-Oddělení MITRE technik do Run1/Run2/Run3
+## 🔜 Plánované rozšíření
 
-Přidání Windows 11 ART jako Red Team endpoint
+- Oddělení MITRE technik do Run1/Run2/Run3
+
+- Přidání Windows 11 ART jako Red Team endpoint
 
 Integrace Suricata IDS/IPS na OPNsense
+
 ✔️ Suricata běží na OPNsense
 
 ✔️ Logy se úspěšně zobrazují ve Wazuh
@@ -160,14 +158,18 @@ Integrace Suricata IDS/IPS na OPNsense
 
 🔄 IPS mód zatím není aktivní (volitelné)
 
-přidání Cloud SIEM Sentinel 
+🔄 Nessus Essentials – reinstalace po refaktoringu labu
 
-přidáni VPN infrastruktura (Wireguard/OPenVPN/OPNsense)  
+- Integrace Microsoft Defender for Cloud + Defender for Endpoint
 
-přídání Databázový server -Ubuntu Server(PostgreSQL/MariaDB)
+- Propojení Azure cloudového labu s lokální infrastrukturou (hybridní prostředí)
 
-přidání Sigma rules
+- Přidání VPN infrastruktury (WireGuard / OpenVPN / OPNsense)
 
-Tvorba hunting queries
+- Nasazení databázového serveru (Ubuntu Server + PostgreSQL/MariaDB)
 
-Rozšíření detekcí ve Wazuh
+✔️ Rozšíření SIEM integrací (Sentinel – hotovo)
+
+- Přidání a úprava Sigma pravidel
+
+- Tvorba pokročilejších hunting queries (KQL, Sigma, Wazuh)
